@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace JacobArchambault.CodeLou.ExerciseProject
 {
@@ -52,6 +53,12 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         {
             Console.WriteLine($"Student Id \t| First Name \t| Last Name \t|  Class ");
             Console.WriteLine($"{studentRecord.StudentId} \t| {studentRecord.FirstName} \t| {studentRecord.LastName} \t| {studentRecord.ClassName} ");
+        }
+        static List<Student> Add(Student student)
+        {
+            List<Student> listOfStudents = new List<Student> { };
+            listOfStudents.Add(student);
+            return listOfStudents;
         }
     }
 }
