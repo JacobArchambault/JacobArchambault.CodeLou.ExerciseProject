@@ -7,14 +7,16 @@ namespace JacobArchambault.CodeLou.ExerciseProject
     {
         static void Main() 
         {
-            List<Student> listOfStudents;
+            List<Student> listOfStudents = new List<Student> { };
             int keepGoing;
             do 
             {
-                PrintStudentRecord(GetStudentInfoFromUser());
+                listOfStudents.Add(GetStudentInfoFromUser());
                 Console.WriteLine("Press 1 to enter another student record. Press any other key to exit the program");
                 _ = int.TryParse(Console.ReadLine(), out keepGoing);
             } while (keepGoing == 1);
+            foreach (Student s in listOfStudents)
+                PrintStudentRecord(s);
         }
         static Student GetStudentInfoFromUser()
         {
@@ -54,11 +56,6 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         {
             Console.WriteLine($"Student Id \t| First Name \t| Last Name \t|  Class ");
             Console.WriteLine($"{studentRecord.StudentId} \t| {studentRecord.FirstName} \t| {studentRecord.LastName} \t| {studentRecord.ClassName} ");
-        }
-        static List<Student> Add(Student student, List<Student> listOfStudents)
-        {
-            listOfStudents.Add(student);
-            return listOfStudents;
         }
     }
 }
