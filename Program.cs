@@ -55,11 +55,11 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         }
         static void PrintRecord<T>(T record)
         {
-            PropertyInfo[] propertyInfo = record.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            foreach (var propInfo in propertyInfo)
-                Console.Write($"|\t {propInfo.Name} \t");
+            PropertyInfo[] objectInfo = record.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            foreach (var propInfo in objectInfo)
+                Console.WriteLine($"{propInfo.Name}: \t{propInfo.GetValue(record, null)}");
+
             Console.WriteLine();
-            //Console.WriteLine($"{studentRecord.StudentId} \t| {studentRecord.FirstName} \t| {studentRecord.LastName} \t| {studentRecord.ClassName} ");
         }
     }
 }
