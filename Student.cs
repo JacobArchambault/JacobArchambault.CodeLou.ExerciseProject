@@ -11,6 +11,5 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         public DateTimeOffset StartDate { get; set; }
         public string LastClassCompleted { get; set; }
         public DateTimeOffset LastClassCompletedOn { get; set; }
-
     }
 }
