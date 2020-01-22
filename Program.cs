@@ -15,8 +15,8 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                 Console.WriteLine("Press 1 to enter another student record. Press any other key to exit the program");
                 _ = int.TryParse(Console.ReadLine(), out keepGoing);
             } while (keepGoing == 1);
-            foreach (Student s in listOfStudents)
-                PrintStudentRecord(s);
+
+            listOfStudents.ForEach(s => PrintStudentRecord(s));
         }
         static Student GetStudentInfoFromUser()
         {
