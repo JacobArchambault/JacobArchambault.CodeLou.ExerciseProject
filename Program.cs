@@ -21,25 +21,25 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         }
         static Student GetStudentInfoFromUser()
         {
-            Console.WriteLine("Enter Student Id");
+            Console.WriteLine("Enter Your student ID number: ");
             _ = int.TryParse(Console.ReadLine(), out int studentId);
 
-            Console.WriteLine("Enter First Name");
+            Console.WriteLine("Enter your first name: ");
             string studentFirstName = Console.ReadLine();
 
-            Console.WriteLine("Enter Last Name");
+            Console.WriteLine("Enter your last name: ");
             string studentLastName = Console.ReadLine();
 
-            Console.WriteLine("Enter Class Name");
+            Console.WriteLine("Enter the class you want to attend: ");
             string className = Console.ReadLine();
 
-            Console.WriteLine("Enter Last Class Completed");
+            Console.WriteLine("Enter last last class you completed: ");
             string lastClass = Console.ReadLine();
 
-            Console.WriteLine("Enter Last Class Completed Date in format MM/dd/YYYY");
+            Console.WriteLine("When did you complete this class? Enter the date in format MM/dd/YYYY: ");
             _ = DateTimeOffset.TryParse(Console.ReadLine(), out DateTimeOffset lastCompletedOn);
 
-            Console.WriteLine("Enter Start Date in format MM/dd/YYYY");
+            Console.WriteLine("Enter the date you wish to start on, in format MM/dd/YYYY: ");
             _ = DateTimeOffset.TryParse(Console.ReadLine(), out DateTimeOffset startDate);
 
             return new Student
@@ -56,7 +56,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         static void PrintRecord<T>(T record)
         {
             PropertyInfo[] objectInfo = record.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            foreach (var propInfo in objectInfo)
+            foreach (var propInfo in objectInfo) 
                 Console.WriteLine($"{propInfo.Name}: \t{propInfo.GetValue(record, null)}");
 
             Console.WriteLine();
