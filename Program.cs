@@ -4,9 +4,9 @@ using System.Reflection;
 
 namespace JacobArchambault.CodeLou.ExerciseProject
 {
-    class Program 
+    class Program
     {
-        static void Main() 
+        static void Main()
         {
             List<Student> listOfStudents = new List<Student> { };
             int keepGoing;
@@ -29,6 +29,10 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             {
                 Console.WriteLine("Enter Your student ID number: ");
                 _ = int.TryParse(Console.ReadLine(), out studentId);
+                if (studentId == 0)
+                {
+                    Console.WriteLine("Invalid input. You must enter a non-zero whole number");
+                }
             } while (studentId == 0);
 
             Console.WriteLine("Enter your first name: ");
@@ -46,12 +50,20 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             {
                 Console.WriteLine("When did you complete this class? Enter the date in format MM/dd/YYYY: ");
                 _ = DateTimeOffset.TryParse(Console.ReadLine(), out lastCompletedOn);
+                if (lastCompletedOn.Equals(DateTimeOffset.MinValue))
+                {
+                    Console.WriteLine("Invalid input format. Please enter the date in format MM/dd/YYYY");
+                }
             } while (lastCompletedOn.Equals(DateTimeOffset.MinValue));
 
             do
             {
                 Console.WriteLine("Enter the date you wish to start on, in format MM/dd/YYYY: ");
                 _ = DateTimeOffset.TryParse(Console.ReadLine(), out startDate);
+                if (startDate.Equals(DateTimeOffset.MinValue))
+                {
+                    Console.WriteLine("Invalid input format. Please enter the date in format MM/dd/YYYY");
+                }
             } while (startDate.Equals(DateTimeOffset.MinValue));
 
             return new Student
@@ -68,7 +80,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         static void PrintRecord<T>(T record)
         {
             PropertyInfo[] objectInfo = record.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            foreach (var propInfo in objectInfo) 
+            foreach (var propInfo in objectInfo)
                 Console.WriteLine($"{propInfo.Name}: \t{propInfo.GetValue(record, null)}");
 
             Console.WriteLine();
