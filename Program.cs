@@ -6,20 +6,20 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 {
     class Program
     {
+
         static void Main()
         {
+
             int keepGoing;
-            string enterRecordMessage = "Press 1 to enter another student record. Press any other key to exit the program";
-            List<Student> listOfStudents = new List<Student> { };
+
+            Console.WriteLine("Welcome to your student center.");
 
             do
             {
-                listOfStudents.Add(GetStudentInfoFromUser());
-                Console.WriteLine(enterRecordMessage);
+                PrintMainMenu();
+                Console.WriteLine("Press 1 to return to the main menu. Press any other key to exit the program");
                 _ = int.TryParse(Console.ReadLine(), out keepGoing);
             } while (keepGoing == 1);
-
-            listOfStudents.ForEach(s => PrintRecord(s));
         }
         static Student GetStudentInfoFromUser()
         {
@@ -98,13 +98,30 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
             Console.WriteLine();
         }
-        static void PrintMenu()
+        static void PrintMainMenu()
         {
-            Console.WriteLine("Welcome to your student center. Please enter a number to select an option from the menu: ");
+            List<Student> listOfStudents = new List<Student> { };
+
+            Console.WriteLine("Please enter a number to select an option from the menu: ");
             Console.WriteLine("1. Enter a new student record.");
             Console.WriteLine("2. View a list of all students.");
             Console.WriteLine("3. Search for a student by name.");
             Console.WriteLine("To exit the program, press any other key.");
+            _ = int.TryParse(Console.ReadLine(), out int response);
+
+            switch (response)
+            {
+                case 1:
+                    listOfStudents.Add(GetStudentInfoFromUser());
+                    break;
+                case 2:
+                    listOfStudents.ForEach(s => PrintRecord(s));
+                    break;
+                case 3:
+                    Console.WriteLine("We're sorry, this option hasn't been completed yet.");
+                    break;
+                default: return;
+            }
         }
     }
 }
