@@ -21,8 +21,15 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         }
         static Student GetStudentInfoFromUser()
         {
-            Console.WriteLine("Enter Your student ID number: ");
-            _ = int.TryParse(Console.ReadLine(), out int studentId);
+            int studentId;
+            DateTimeOffset lastCompletedOn;
+            DateTimeOffset startDate;
+
+            do
+            {
+                Console.WriteLine("Enter Your student ID number: ");
+                _ = int.TryParse(Console.ReadLine(), out studentId);
+            } while (studentId == 0);
 
             Console.WriteLine("Enter your first name: ");
             string studentFirstName = Console.ReadLine();
@@ -33,14 +40,19 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             Console.WriteLine("Enter the class you want to attend: ");
             string className = Console.ReadLine();
 
-            Console.WriteLine("Enter last last class you completed: ");
+            Console.WriteLine("Enter the last class you completed: ");
             string lastClass = Console.ReadLine();
+            do
+            {
+                Console.WriteLine("When did you complete this class? Enter the date in format MM/dd/YYYY: ");
+                _ = DateTimeOffset.TryParse(Console.ReadLine(), out lastCompletedOn);
+            } while (lastCompletedOn.Equals(DateTimeOffset.MinValue));
 
-            Console.WriteLine("When did you complete this class? Enter the date in format MM/dd/YYYY: ");
-            _ = DateTimeOffset.TryParse(Console.ReadLine(), out DateTimeOffset lastCompletedOn);
-
-            Console.WriteLine("Enter the date you wish to start on, in format MM/dd/YYYY: ");
-            _ = DateTimeOffset.TryParse(Console.ReadLine(), out DateTimeOffset startDate);
+            do
+            {
+                Console.WriteLine("Enter the date you wish to start on, in format MM/dd/YYYY: ");
+                _ = DateTimeOffset.TryParse(Console.ReadLine(), out startDate);
+            } while (startDate.Equals(DateTimeOffset.MinValue));
 
             return new Student
             {
