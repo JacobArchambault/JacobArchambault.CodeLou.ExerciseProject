@@ -8,12 +8,14 @@ namespace JacobArchambault.CodeLou.ExerciseProject
     {
         static void Main()
         {
-            List<Student> listOfStudents = new List<Student> { };
             int keepGoing;
+            string enterRecordMessage = "Press 1 to enter another student record. Press any other key to exit the program";
+            List<Student> listOfStudents = new List<Student> { };
+
             do
             {
                 listOfStudents.Add(GetStudentInfoFromUser());
-                Console.WriteLine("Press 1 to enter another student record. Press any other key to exit the program");
+                Console.WriteLine(enterRecordMessage);
                 _ = int.TryParse(Console.ReadLine(), out keepGoing);
             } while (keepGoing == 1);
 
@@ -25,44 +27,55 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             DateTimeOffset lastCompletedOn;
             DateTimeOffset startDate;
 
+            #region string resource table
+            string enterId = "Enter Your student ID number: ";
+            string invalidNumberMessage = "Invalid input. You must enter a non-zero whole number";
+            string enterFirstName = "Enter your first name: ";
+            string enterLastName = "Enter your last name: ";
+            string enterClass = "Enter the class you want to attend: ";
+            string enterLastClassCompleted = "Enter the last class you completed: ";
+            string dateCompletedPrompt = "When did you complete this class? Enter the date in format MM/dd/YYYY: ";
+            string invalidDateMessage = "Invalid input format. Please enter the date in format MM/dd/YYYY";
+            string enterStartDate = "Enter the date you wish to start on, in format MM/dd/YYYY: ";
+            #endregion
             do
             {
-                Console.WriteLine("Enter Your student ID number: ");
+                Console.WriteLine(enterId);
                 _ = int.TryParse(Console.ReadLine(), out studentId);
                 if (studentId == 0)
                 {
-                    Console.WriteLine("Invalid input. You must enter a non-zero whole number");
+                    Console.WriteLine(invalidNumberMessage);
                 }
             } while (studentId == 0);
 
-            Console.WriteLine("Enter your first name: ");
+            Console.WriteLine(enterFirstName);
             string studentFirstName = Console.ReadLine();
 
-            Console.WriteLine("Enter your last name: ");
+            Console.WriteLine(enterLastName);
             string studentLastName = Console.ReadLine();
 
-            Console.WriteLine("Enter the class you want to attend: ");
+            Console.WriteLine(enterClass);
             string className = Console.ReadLine();
 
-            Console.WriteLine("Enter the last class you completed: ");
+            Console.WriteLine(enterLastClassCompleted);
             string lastClass = Console.ReadLine();
             do
             {
-                Console.WriteLine("When did you complete this class? Enter the date in format MM/dd/YYYY: ");
+                Console.WriteLine(dateCompletedPrompt);
                 _ = DateTimeOffset.TryParse(Console.ReadLine(), out lastCompletedOn);
                 if (lastCompletedOn.Equals(DateTimeOffset.MinValue))
                 {
-                    Console.WriteLine("Invalid input format. Please enter the date in format MM/dd/YYYY");
+                    Console.WriteLine(invalidDateMessage);
                 }
             } while (lastCompletedOn.Equals(DateTimeOffset.MinValue));
 
             do
             {
-                Console.WriteLine("Enter the date you wish to start on, in format MM/dd/YYYY: ");
+                Console.WriteLine(enterStartDate);
                 _ = DateTimeOffset.TryParse(Console.ReadLine(), out startDate);
                 if (startDate.Equals(DateTimeOffset.MinValue))
                 {
-                    Console.WriteLine("Invalid input format. Please enter the date in format MM/dd/YYYY");
+                    Console.WriteLine(invalidDateMessage);
                 }
             } while (startDate.Equals(DateTimeOffset.MinValue));
 
@@ -84,6 +97,14 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                 Console.WriteLine($"{propInfo.Name}: \t{propInfo.GetValue(record, null)}");
 
             Console.WriteLine();
+        }
+        static void PrintMenu()
+        {
+            Console.WriteLine("Welcome to your student center. Please enter a number to select an option from the menu: ");
+            Console.WriteLine("1. Enter a new student record.");
+            Console.WriteLine("2. View a list of all students.");
+            Console.WriteLine("3. Search for a student by name.");
+            Console.WriteLine("To exit the program, press any other key.");
         }
     }
 }
