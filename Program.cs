@@ -10,14 +10,14 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
         static void Main()
         {
-
+            List<Student> listOfStudents = new List<Student> { };
             int keepGoing;
 
             Console.WriteLine("Welcome to your student center.");
 
             do
             {
-                PrintMainMenu();
+                PrintMainMenu(listOfStudents);
                 Console.WriteLine("Press 1 to return to the main menu. Press any other key to exit the program");
                 _ = int.TryParse(Console.ReadLine(), out keepGoing);
             } while (keepGoing == 1);
@@ -39,6 +39,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             string invalidDateMessage = "Invalid input format. Please enter the date in format MM/dd/YYYY";
             string enterStartDate = "Enter the date you wish to start on, in format MM/dd/YYYY: ";
             #endregion
+
             do
             {
                 Console.WriteLine(enterId);
@@ -60,6 +61,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
             Console.WriteLine(enterLastClassCompleted);
             string lastClass = Console.ReadLine();
+
             do
             {
                 Console.WriteLine(dateCompletedPrompt);
@@ -99,9 +101,8 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
             Console.WriteLine();
         }
-        static void PrintMainMenu()
+        static List<Student> PrintMainMenu(List<Student> studentList)
         {
-            List<Student> listOfStudents = new List<Student> { };
 
             Console.WriteLine("Please enter a number to select an option from the menu: ");
             Console.WriteLine("1. Enter a new student record.");
@@ -113,18 +114,18 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             switch (response)
             {
                 case 1:
-                    listOfStudents.Add(GetStudentInfoFromUser());
+                    studentList.Add(GetStudentInfoFromUser());
                     break;
                 case 2:
-                    listOfStudents.ForEach(s => PrintRecord(s));
+                    studentList.ForEach(s => PrintRecord(s));
                     break;
                 case 3:
                     Console.WriteLine("Enter the name that you want to search for: ");
                     string userSearch = Console.ReadLine();
-                    Search(userSearch, listOfStudents);
+                    Search(userSearch, studentList).ForEach(s => PrintRecord(s));
                     break;
-                default: return;
             }
+            return studentList;
         }
         static List<Student> Search(string userName, List<Student> listToSearchIn) 
         {
