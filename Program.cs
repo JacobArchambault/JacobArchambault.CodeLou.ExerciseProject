@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace JacobArchambault.CodeLou.ExerciseProject
@@ -125,7 +126,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         }
         static List<Student> Search(string userName, List<Student> listToSearchIn) 
         {
-            return listToSearchIn;
+            return (List<Student>) from l in listToSearchIn where l.FirstName.Contains(userName) || l.LastName.Contains(userName) select l;
         }
     }
 }
