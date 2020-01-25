@@ -27,7 +27,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             DateTimeOffset lastCompletedOn;
             DateTimeOffset startDate;
 
-            #region string resource table
+            #region strings
             string enterId = "Enter Your student ID number: ";
             string invalidNumberMessage = "Invalid input. You must enter a non-zero whole number";
             string enterFirstName = "Enter your first name: ";
@@ -106,7 +106,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             Console.WriteLine("1. Enter a new student record.");
             Console.WriteLine("2. View a list of all students.");
             Console.WriteLine("3. Search for a student by name.");
-            Console.WriteLine("To exit the program, press any other key.");
+            Console.WriteLine("Press any other key to exit the program.");
             _ = int.TryParse(Console.ReadLine(), out int response);
 
             switch (response)
@@ -122,6 +122,10 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                     break;
                 default: return;
             }
+        }
+        static List<Student> Search(string userName, List<Student> listToSearchIn) 
+        {
+            return listToSearchIn;
         }
     }
 }
