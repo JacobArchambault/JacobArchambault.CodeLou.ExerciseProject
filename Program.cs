@@ -119,14 +119,16 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                     listOfStudents.ForEach(s => PrintRecord(s));
                     break;
                 case 3:
-                    Console.WriteLine("We're sorry, this option hasn't been completed yet.");
+                    Console.WriteLine("Enter the name that you want to search for: ");
+                    string userSearch = Console.ReadLine();
+                    Search(userSearch, listOfStudents);
                     break;
                 default: return;
             }
         }
         static List<Student> Search(string userName, List<Student> listToSearchIn) 
         {
-            return (List<Student>) from l in listToSearchIn where l.FirstName.Contains(userName) || l.LastName.Contains(userName) select l;
+            return (from l in listToSearchIn where l.Name.Contains(userName) select l).ToList();
         }
     }
 }

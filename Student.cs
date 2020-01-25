@@ -7,6 +7,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         internal int StudentId { get; set; }
         internal string FirstName { get; set; }
         internal string LastName { get; set; }
+        internal string Name => $"{FirstName} {LastName}";
         internal string ClassName { get; set; }
         internal DateTimeOffset StartDate { get; set; }
         internal string LastClassCompleted { get; set; }
