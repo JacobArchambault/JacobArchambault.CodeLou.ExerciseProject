@@ -17,7 +17,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
             do
             {
-                PrintMainMenu()
+                PrintMainMenu();
                 _ = int.TryParse(Console.ReadLine(), out int response);
                 Choose(response, listOfStudents);
                 Console.WriteLine("Press 1 to return to the main menu. Press any other key to exit the program");
@@ -52,19 +52,18 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         }
         static Student GetStudentInfoFromUser()
         {
-            int studentId;
-            DateTimeOffset startDate;
             string invalidDateMessage = "Invalid input format. Please enter the date in format MM/dd/YYYY";
+            string completedPrompt = "When did you complete this class? Enter the date in format MM/dd/YYYY: ";
+            string startDatePrompt = "Enter the date you wish to start on, in format MM/dd/YYYY: ";
 
-            do
+            Console.WriteLine("Enter Your student ID number: ");
+            _ = int.TryParse(Console.ReadLine(), out int studentId);
+            while (studentId == 0)
             {
+                Console.WriteLine("Invalid input. You must enter a non-zero whole number");
                 Console.WriteLine("Enter Your student ID number: ");
                 _ = int.TryParse(Console.ReadLine(), out studentId);
-                if (studentId == 0)
-                {
-                    Console.WriteLine("Invalid input. You must enter a non-zero whole number");
-                }
-            } while (studentId == 0);
+            }
 
             Console.WriteLine("Enter your first name: ");
             string studentFirstName = Console.ReadLine();
@@ -78,25 +77,25 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             Console.WriteLine("Enter the last class you completed: ");
             string lastClass = Console.ReadLine();
 
-            Console.WriteLine("When did you complete this class? Enter the date in format MM/dd/YYYY: ");
+            Console.WriteLine(completedPrompt);
             _ = DateTimeOffset.TryParse(Console.ReadLine(), out DateTimeOffset lastCompletedOn);
             while (lastCompletedOn.Equals(DateTimeOffset.MinValue))
             {
                 Console.WriteLine(invalidDateMessage);
-                Console.WriteLine("When did you complete this class? Enter the date in format MM/dd/YYYY: ");
+                Console.WriteLine(completedPrompt);
                 _ = DateTimeOffset.TryParse(Console.ReadLine(), out lastCompletedOn);
 
-            }; // Find a way to clean up the repetition in these lines and in those immediately following it.
+            };
 
-            do
+            Console.WriteLine(startDatePrompt);
+            _ = DateTimeOffset.TryParse(Console.ReadLine(), out DateTimeOffset startDate);
+            while (startDate.Equals(DateTimeOffset.MinValue))
             {
-                Console.WriteLine("Enter the date you wish to start on, in format MM/dd/YYYY: ");
+                Console.WriteLine(invalidDateMessage);
+                Console.WriteLine(startDatePrompt);
                 _ = DateTimeOffset.TryParse(Console.ReadLine(), out startDate);
-                if (startDate.Equals(DateTimeOffset.MinValue))
-                {
-                    Console.WriteLine(invalidDateMessage);
-                }
-            } while (startDate.Equals(DateTimeOffset.MinValue));
+
+            }
 
             return new Student
             {
@@ -117,9 +116,9 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
             Console.WriteLine();
         }
-        static List<Student> Search(string userName, List<Student> listToSearchIn) 
+        static List<Student> Search(string userName, List<Student> listToSearchIn)
         {
-            return (from l in listToSearchIn where l.Name.ToLowerInvariant().Contains(userName.ToLowerInvariant()) select l).ToList();
+            return (from l in listToSearchIn where l.Name.ToUpperInvariant().Contains(userName.ToUpperInvariant()) select l).ToList();
         }
     }
 }
