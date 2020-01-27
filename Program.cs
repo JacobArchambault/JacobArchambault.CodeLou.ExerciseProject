@@ -17,12 +17,14 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
             do
             {
-                Choose(PrintMainMenu(), listOfStudents);
+                PrintMainMenu()
+                _ = int.TryParse(Console.ReadLine(), out int response);
+                Choose(response, listOfStudents);
                 Console.WriteLine("Press 1 to return to the main menu. Press any other key to exit the program");
                 _ = int.TryParse(Console.ReadLine(), out keepGoing);
             } while (keepGoing == 1);
         }
-        static int PrintMainMenu()
+        static void PrintMainMenu()
         {
 
             Console.WriteLine("Please enter a number to select an option from the menu: ");
@@ -30,8 +32,6 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             Console.WriteLine("2. View a list of all students.");
             Console.WriteLine("3. Search for a student by name.");
             Console.WriteLine("Press any other key to exit the program.");
-            _ = int.TryParse(Console.ReadLine(), out int response);
-            return response;
         }
         static List<Student> Choose(int option, List<Student> studentList)
         {
