@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace JacobArchambault.CodeLou.ExerciseProject
 {
-    class Program
+    static class Program
     {
 
         static void Main()
@@ -119,6 +119,15 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         static List<Student> Search(string userName, List<Student> listToSearchIn)
         {
             return (from l in listToSearchIn where l.Name.ToUpperInvariant().Contains(userName.ToUpperInvariant()) select l).ToList();
+        }
+        delegate bool TryParse<T>(string str, out T value);
+
+        static T ParseUserInput<T>(string userPrompt, TryParse<T> parseFunc)
+        {
+            Console.WriteLine(userPrompt);
+            string str = Console.ReadLine();
+            parseFunc(str, out T val);
+            return val;
         }
     }
 }
