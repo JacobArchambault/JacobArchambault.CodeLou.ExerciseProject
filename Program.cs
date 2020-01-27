@@ -45,8 +45,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                     break;
                 case 3:
                     Console.WriteLine("Enter the name that you want to search for: ");
-                    string userSearch = Console.ReadLine();
-                    Search(userSearch, studentList).ForEach(s => PrintRecord(s));
+                    Search(Console.ReadLine(), studentList).ForEach(s => PrintRecord(s));
                     break;
             }
             return studentList;
