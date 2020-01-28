@@ -17,7 +17,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             Console.WriteLine("3. Search for a student by name.");
             Console.WriteLine("Press any other key to exit the program.");
         }
-        internal static List<Student> Choose(int option, List<Student> studentList)
+        internal static void Choose(int option, List<Student> studentList)
         {
             switch (option)
             {
@@ -32,7 +32,6 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                     Search(Console.ReadLine(), studentList).ForEach(s => PrintRecord(s));
                     break;
             }
-            return studentList;
         }
         static Student GetStudentInfoFromUser()
         {
