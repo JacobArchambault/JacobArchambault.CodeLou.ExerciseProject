@@ -55,14 +55,13 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             string invalidDateMessage = "Invalid input format. Please enter the date in format MM/dd/YYYY";
             string completedPrompt = "When did you complete this class? Enter the date in format MM/dd/YYYY: ";
             string startDatePrompt = "Enter the date you wish to start on, in format MM/dd/YYYY: ";
+            int studentId;
+            DateTimeOffset lastCompletedOn;
+            DateTimeOffset startDate;
 
-            Console.WriteLine("Enter Your student ID number: ");
-            _ = int.TryParse(Console.ReadLine(), out int studentId);
-            while (studentId == 0)
+            while (!(GetStudentInput("Enter your student ID number: ", out studentId, int.TryParse)))
             {
                 Console.WriteLine("Invalid input. You must enter a non-zero whole number");
-                Console.WriteLine("Enter Your student ID number: ");
-                _ = int.TryParse(Console.ReadLine(), out studentId);
             }
 
             Console.WriteLine("Enter your first name: ");
@@ -77,24 +76,15 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             Console.WriteLine("Enter the last class you completed: ");
             string lastClass = Console.ReadLine();
 
-            Console.WriteLine(completedPrompt);
-            _ = DateTimeOffset.TryParse(Console.ReadLine(), out DateTimeOffset lastCompletedOn);
-            while (lastCompletedOn.Equals(DateTimeOffset.MinValue))
+            while (!(GetStudentInput(completedPrompt, out lastCompletedOn, DateTimeOffset.TryParse)))
             {
                 Console.WriteLine(invalidDateMessage);
-                Console.WriteLine(completedPrompt);
-                _ = DateTimeOffset.TryParse(Console.ReadLine(), out lastCompletedOn);
 
             };
 
-            Console.WriteLine(startDatePrompt);
-            _ = DateTimeOffset.TryParse(Console.ReadLine(), out DateTimeOffset startDate);
-            while (startDate.Equals(DateTimeOffset.MinValue))
+            while (!(GetStudentInput(startDatePrompt, out startDate, DateTimeOffset.TryParse)))
             {
                 Console.WriteLine(invalidDateMessage);
-                Console.WriteLine(startDatePrompt);
-                _ = DateTimeOffset.TryParse(Console.ReadLine(), out startDate);
-
             }
 
             return new Student
@@ -120,14 +110,18 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         {
             return (from l in listToSearchIn where l.Name.ToUpperInvariant().Contains(userName.ToUpperInvariant()) select l).ToList();
         }
-        delegate bool TryParse<T>(string str, out T value);
-
-        static T ParseUserInput<T>(string userPrompt, TryParse<T> parseFunc)
+        delegate bool TryParseHandler<T>(string value, out T result);
+        static bool GetStudentInput<T>(string userPrompt, out T output, TryParseHandler<T> handler)
         {
             Console.WriteLine(userPrompt);
-            string str = Console.ReadLine();
-            parseFunc(str, out T val);
-            return val;
+            return handler(Console.ReadLine(), out output);
         }
+
+        //static bool ParseUserInput<T>(string userPrompt, string whatToParse, out T value)
+        //{
+        //    Console.WriteLine(userPrompt);
+        //    whatToParse = Console.ReadLine();
+        //    return int.TryParse(whatToParse, out value);
+        //}
     }
 }
