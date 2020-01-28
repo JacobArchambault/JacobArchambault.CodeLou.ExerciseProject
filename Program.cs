@@ -116,12 +116,5 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             Console.WriteLine(userPrompt);
             return handler(Console.ReadLine(), out output);
         }
-
-        //static bool ParseUserInput<T>(string userPrompt, string whatToParse, out T value)
-        //{
-        //    Console.WriteLine(userPrompt);
-        //    whatToParse = Console.ReadLine();
-        //    return int.TryParse(whatToParse, out value);
-        //}
     }
 }
