@@ -11,18 +11,17 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         static void Main()
         {
             List<Student> listOfStudents = new List<Student> { };
-            int keepGoing;
+            int response;
 
             Console.WriteLine("Welcome to your student center.");
 
             do
             {
                 Menu.PrintMainMenu();
-                _ = int.TryParse(Console.ReadLine(), out int response);
+                _ = int.TryParse(Console.ReadLine(), out response);
                 Menu.Choose(response, listOfStudents);
-                Console.WriteLine("Press 1 to return to the main menu. Press any other key to exit the program");
-                _ = int.TryParse(Console.ReadLine(), out keepGoing);
-            } while (keepGoing == 1);
+            } while (response == 1 || response == 2 || response == 3);
+
         }
     }
 }
