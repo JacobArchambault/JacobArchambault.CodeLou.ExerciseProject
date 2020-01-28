@@ -111,6 +111,10 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             return (from l in listToSearchIn where l.Name.ToUpperInvariant().Contains(userName.ToUpperInvariant()) select l).ToList();
         }
         delegate bool TryParseHandler<T>(string value, out T result);
+
+        ///<summary>
+        /// Prompts a user with a message and attempts to parse the user's response to a desired type.
+        ///</summary>
         static bool GetStudentInput<T>(string userPrompt, out T output, TryParseHandler<T> handler)
         {
             Console.WriteLine(userPrompt);
