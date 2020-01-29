@@ -7,6 +7,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 {
     internal static class Menu
     {
+        #region 1 Void methods
         internal static void PrintMainMenu()
         {
 
@@ -32,7 +33,9 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                     break;
             }
         }
-        static Student GetStudentInfoFromUser()
+        #endregion
+        #region 2 Return methods
+        internal static Student GetStudentInfoFromUser()
         {
             string invalidDateMessage = "Invalid input format. Please enter the date in format MM/dd/YYYY";
             string completedPrompt = "When did you complete this class? Enter the date in format MM/dd/YYYY: ";
@@ -80,7 +83,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                 LastClassCompletedOn = lastCompletedOn
             };
         }
-        static void PrintRecord<T>(T record)
+        internal static void PrintRecord<T>(T record)
         {
             PropertyInfo[] objectInfo = record.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             foreach (var propInfo in objectInfo)
@@ -88,19 +91,21 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
             Console.WriteLine();
         }
-        static List<Student> Search(string userName, List<Student> listToSearchIn)
+        internal static List<Student> Search(string userName, List<Student> listToSearchIn)
         {
             return (from l in listToSearchIn where l.Name.ToUpperInvariant().Contains(userName.ToUpperInvariant()) select l).ToList();
         }
-        delegate bool TryParseHandler<T>(string value, out T result);
-
         ///<summary>
         /// Prompts a user with a message and attempts to parse the user's response to a desired type.
         ///</summary>
-        static bool GetStudentInput<T>(string userPrompt, out T output, TryParseHandler<T> handler)
+        internal static bool GetStudentInput<T>(string userPrompt, out T output, TryParseHandler<T> handler)
         {
             Console.WriteLine(userPrompt);
             return handler(Console.ReadLine(), out output);
         }
+        #endregion
+
+        internal delegate bool TryParseHandler<T>(string value, out T result);
+
     }
 }
