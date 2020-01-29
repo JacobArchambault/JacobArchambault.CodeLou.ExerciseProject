@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using static System.Console;
 
 namespace JacobArchambault.CodeLou.ExerciseProject
 {
@@ -11,11 +12,11 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         internal static void PrintMainMenu()
         {
 
-            Console.WriteLine("Please enter a number to select an option from the menu: ");
-            Console.WriteLine("1. Enter a new student record.");
-            Console.WriteLine("2. View a list of all students.");
-            Console.WriteLine("3. Search for a student by name.");
-            Console.WriteLine("Press any other key to exit the program.");
+            WriteLine("Please enter a number to select an option from the menu: ");
+            WriteLine("1. Enter a new student record.");
+            WriteLine("2. View a list of all students.");
+            WriteLine("3. Search for a student by name.");
+            WriteLine("Press any other key to exit the program.");
         }
         internal static void Choose(int option, List<Student> studentList)
         {
@@ -28,18 +29,19 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                     studentList.ForEach(s => PrintRecord(s));
                     break;
                 case 3:
-                    Console.WriteLine("Enter the name that you want to search for: ");
-                    Search(Console.ReadLine(), studentList).ForEach(s => PrintRecord(s));
+                    WriteLine("Enter the name that you want to search for: ");
+                    Search(ReadLine(), studentList).ForEach(s => PrintRecord(s));
                     break;
             }
         }
         internal static void PrintRecord<T>(T record)
         {
             PropertyInfo[] objectInfo = record.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            foreach (var propInfo in objectInfo)
-                Console.WriteLine($"{propInfo.Name}: \t{propInfo.GetValue(record, null)}");
 
-            Console.WriteLine();
+            foreach (var propInfo in objectInfo)
+                WriteLine($"{propInfo.Name}: \t{propInfo.GetValue(record, null)}");
+
+            WriteLine();
         }
 
         #endregion
@@ -56,30 +58,30 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
             while (!(GetStudentInput("Enter your student ID number: ", out studentId, int.TryParse)))
             {
-                Console.WriteLine("Invalid input. You must enter a non-zero whole number");
+                WriteLine("Invalid input. You must enter a non-zero whole number");
             }
 
-            Console.WriteLine("Enter your first name: ");
-            string studentFirstName = Console.ReadLine();
+            WriteLine("Enter your first name: ");
+            string studentFirstName = ReadLine();
 
-            Console.WriteLine("Enter your last name: ");
-            string studentLastName = Console.ReadLine();
+            WriteLine("Enter your last name: ");
+            string studentLastName = ReadLine();
 
-            Console.WriteLine("Enter the class you want to attend: ");
-            string className = Console.ReadLine();
+            WriteLine("Enter the class you want to attend: ");
+            string className = ReadLine();
 
-            Console.WriteLine("Enter the last class you completed: ");
-            string lastClass = Console.ReadLine();
+            WriteLine("Enter the last class you completed: ");
+            string lastClass = ReadLine();
 
             while (!(GetStudentInput(completedPrompt, out lastCompletedOn, DateTimeOffset.TryParse)))
             {
-                Console.WriteLine(invalidDateMessage);
+                WriteLine(invalidDateMessage);
 
             };
 
             while (!(GetStudentInput(startDatePrompt, out startDate, DateTimeOffset.TryParse)))
             {
-                Console.WriteLine(invalidDateMessage);
+                WriteLine(invalidDateMessage);
             }
 
             return new Student
@@ -103,8 +105,8 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         ///</summary>
         internal static bool GetStudentInput<T>(string userPrompt, out T output, TryParseHandler<T> handler)
         {
-            Console.WriteLine(userPrompt);
-            return handler(Console.ReadLine(), out output);
+            WriteLine(userPrompt);
+            return handler(ReadLine(), out output);
         }
         internal delegate bool TryParseHandler<T>(string value, out T result);
         #endregion

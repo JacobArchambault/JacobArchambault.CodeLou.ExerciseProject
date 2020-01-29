@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 using System.Threading.Tasks;
 using static JacobArchambault.CodeLou.ExerciseProject.Menu;
+using static System.Console;
+using static System.IO.File;
+using static System.Text.Json.JsonSerializer;
+
 namespace JacobArchambault.CodeLou.ExerciseProject
 {
     static class Program
@@ -15,24 +17,25 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             int response;
             List<Student> listOfStudents;
 
-            using (FileStream fs = File.OpenRead(jsonFile))
+            using (FileStream fs = OpenRead(jsonFile))
             {
-
-                listOfStudents = await JsonSerializer.DeserializeAsync<List<Student>>(fs);
+                // TODO: Add checks to ensure json file exists and has the right format.
+                listOfStudents = await DeserializeAsync<List<Student>>(fs); 
             }
 
-            Console.WriteLine("Welcome to your student center.");
+            WriteLine("Welcome to your student center.");
 
             do
             {
                 PrintMainMenu();
-                _ = int.TryParse(Console.ReadLine(), out response);
+                _ = int.TryParse(ReadLine(), out response);
                 Choose(response, listOfStudents);
             } while (response == 1 || response == 2 || response == 3);
 
-            using (FileStream fs = File.Create(jsonFile))
+            using (FileStream fs = Create(jsonFile))
             {
-                await JsonSerializer.SerializeAsync(fs, listOfStudents);
+                // TODO: Add checks to ensure json file exists and has the right format.
+                await SerializeAsync(fs, listOfStudents);
             }
         }
     }
