@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 using static JacobArchambault.CodeLou.ExerciseProject.Menu;
-
 namespace JacobArchambault.CodeLou.ExerciseProject
 {
     static class Program
     {
 
-        static void Main()
+        static async Task Main()
         {
             string jsonFile = @"..\..\..\student.json";
-            Console.WriteLine(File.Exists(jsonFile) ? "File exists." : "File does not exist.");
-            List<Student> listOfStudents = new List<Student> { };
             int response;
+            List<Student> listOfStudents = new List<Student> { };
 
             Console.WriteLine("Welcome to your student center.");
 
@@ -25,7 +24,10 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                 Choose(response, listOfStudents);
             } while (response == 1 || response == 2 || response == 3);
 
-            //_ = JsonSerializer.Serialize(listOfStudents);
+            using (FileStream fs = File.Create(jsonFile))
+            {
+                await JsonSerializer.SerializeAsync(fs, listOfStudents);
+            }
         }
     }
 }
