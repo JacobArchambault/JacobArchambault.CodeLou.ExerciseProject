@@ -11,6 +11,9 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
         static void Main()
         {
+            string jsonFile = @"C:\Users\jacob.archambault\source\repos\CodeLouisvilleProjects\JacobArchambault.CodeLou.ExerciseProject\student.json";
+            Console.WriteLine(File.Exists(jsonFile) ? "File exists." : "File does not exist.");
+
             List<Student> listOfStudents = new List<Student> { };
             int response;
 
