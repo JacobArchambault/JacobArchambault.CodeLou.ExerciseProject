@@ -34,6 +34,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             }
         }
         #endregion
+
         #region 2 Return methods
         internal static Student GetStudentInfoFromUser()
         {

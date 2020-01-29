@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using static JacobArchambault.CodeLou.ExerciseProject.Menu;
 
 namespace JacobArchambault.CodeLou.ExerciseProject
@@ -20,6 +21,8 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                 _ = int.TryParse(Console.ReadLine(), out response);
                 Choose(response, listOfStudents);
             } while (response == 1 || response == 2 || response == 3);
+
+            //_ = JsonSerializer.Serialize(listOfStudents);
         }
     }
 }
