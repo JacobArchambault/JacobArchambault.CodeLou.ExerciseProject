@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+using static JacobArchambault.CodeLou.ExerciseProject.Menu;
 
 namespace JacobArchambault.CodeLou.ExerciseProject
 {
@@ -17,11 +16,10 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
             do
             {
-                Menu.PrintMainMenu();
+                PrintMainMenu();
                 _ = int.TryParse(Console.ReadLine(), out response);
-                Menu.Choose(response, listOfStudents);
+                Choose(response, listOfStudents);
             } while (response == 1 || response == 2 || response == 3);
-
         }
     }
 }
