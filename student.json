@@ -1,1 +1,47 @@
-[{"StudentId":4515,"FirstName":"Jacob","LastName":"Archambault","ClassName":"Calculus","StartDate":"2222-02-02T00:00:00-05:00","LastClassCompleted":"Chemistry","LastClassCompletedOn":"1111-01-01T00:00:00-05:00"},{"StudentId":23452346,"FirstName":"William","LastName":"Tell","ClassName":"Archery","StartDate":"2020-02-23T00:00:00-05:00","LastClassCompleted":"Bull riding","LastClassCompletedOn":"2019-02-03T00:00:00-05:00"},{"StudentId":13241234,"FirstName":"John","LastName":"Smith","ClassName":"History","StartDate":"2323-12-25T00:00:00-05:00","LastClassCompleted":"Geography","LastClassCompletedOn":"1492-01-11T00:00:00-05:00"},{"StudentId":123434,"FirstName":"Joseph","LastName":"Conrad","ClassName":"Literature","StartDate":"2222-02-03T00:00:00-05:00","LastClassCompleted":"Polish 101","LastClassCompletedOn":"1919-03-09T00:00:00-05:00"},{"StudentId":34134,"FirstName":"Edith","LastName":"Wharton","ClassName":"Literature","StartDate":"2323-01-10T00:00:00-05:00","LastClassCompleted":"Fashion design","LastClassCompletedOn":"2222-01-02T00:00:00-05:00"}]
+[
+  {
+    "StudentId": 4515,
+    "FirstName": "Jacob",
+    "LastName": "Archambault",
+    "ClassName": "Calculus",
+    "StartDate": "2222-02-02T00:00:00-05:00",
+    "LastClassCompleted": "Chemistry",
+    "LastClassCompletedOn": "1111-01-01T00:00:00-05:00"
+  },
+  {
+    "StudentId": 23452346,
+    "FirstName": "William",
+    "LastName": "Tell",
+    "ClassName": "Archery",
+    "StartDate": "2020-02-23T00:00:00-05:00",
+    "LastClassCompleted": "Bull riding",
+    "LastClassCompletedOn": "2019-02-03T00:00:00-05:00"
+  },
+  {
+    "StudentId": 13241234,
+    "FirstName": "John",
+    "LastName": "Smith",
+    "ClassName": "History",
+    "StartDate": "2323-12-25T00:00:00-05:00",
+    "LastClassCompleted": "Geography",
+    "LastClassCompletedOn": "1492-01-11T00:00:00-05:00"
+  },
+  {
+    "StudentId": 123434,
+    "FirstName": "Joseph",
+    "LastName": "Conrad",
+    "ClassName": "Literature",
+    "StartDate": "2222-02-03T00:00:00-05:00",
+    "LastClassCompleted": "Polish 101",
+    "LastClassCompletedOn": "1919-03-09T00:00:00-05:00"
+  },
+  {
+    "StudentId": 34134,
+    "FirstName": "Edith",
+    "LastName": "Wharton",
+    "ClassName": "Literature",
+    "StartDate": "2323-01-10T00:00:00-05:00",
+    "LastClassCompleted": "Fashion design",
+    "LastClassCompletedOn": "2222-01-02T00:00:00-05:00"
+  }
+]
