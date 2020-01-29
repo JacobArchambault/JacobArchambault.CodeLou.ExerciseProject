@@ -13,7 +13,13 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         {
             string jsonFile = @"..\..\..\student.json";
             int response;
-            List<Student> listOfStudents = new List<Student> { };
+            List<Student> listOfStudents;
+
+            using (FileStream fs = File.OpenRead(jsonFile))
+            {
+
+                listOfStudents = await JsonSerializer.DeserializeAsync<List<Student>>(fs);
+            }
 
             Console.WriteLine("Welcome to your student center.");
 
