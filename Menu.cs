@@ -33,6 +33,15 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                     break;
             }
         }
+        internal static void PrintRecord<T>(T record)
+        {
+            PropertyInfo[] objectInfo = record.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            foreach (var propInfo in objectInfo)
+                Console.WriteLine($"{propInfo.Name}: \t{propInfo.GetValue(record, null)}");
+
+            Console.WriteLine();
+        }
+
         #endregion
 
         #region 2 Return methods
@@ -84,18 +93,11 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                 LastClassCompletedOn = lastCompletedOn
             };
         }
-        internal static void PrintRecord<T>(T record)
-        {
-            PropertyInfo[] objectInfo = record.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            foreach (var propInfo in objectInfo)
-                Console.WriteLine($"{propInfo.Name}: \t{propInfo.GetValue(record, null)}");
-
-            Console.WriteLine();
-        }
         internal static List<Student> Search(string userName, List<Student> listToSearchIn)
         {
             return (from l in listToSearchIn where l.Name.ToUpperInvariant().Contains(userName.ToUpperInvariant()) select l).ToList();
         }
+
         ///<summary>
         /// Prompts a user with a message and attempts to parse the user's response to a desired type.
         ///</summary>
@@ -104,9 +106,9 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             Console.WriteLine(userPrompt);
             return handler(Console.ReadLine(), out output);
         }
+        internal delegate bool TryParseHandler<T>(string value, out T result);
         #endregion
 
-        internal delegate bool TryParseHandler<T>(string value, out T result);
 
     }
 }

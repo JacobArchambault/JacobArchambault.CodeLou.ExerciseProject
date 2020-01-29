@@ -2,15 +2,15 @@
 
 namespace JacobArchambault.CodeLou.ExerciseProject
 {
-    internal class Student
+    public class Student
     {
-        internal int StudentId { get; set; }
-        internal string FirstName { get; set; }
-        internal string LastName { get; set; }
-        internal string Name => $"{FirstName} {LastName}";
-        internal string ClassName { get; set; }
-        internal DateTimeOffset StartDate { get; set; }
-        internal string LastClassCompleted { get; set; }
-        internal DateTimeOffset LastClassCompletedOn { get; set; }
+        public int StudentId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Name => $"{FirstName} {LastName}";
+        public string ClassName { get; set; }
+        public DateTimeOffset StartDate { get; set; }
+        public string LastClassCompleted { get; set; }
+        public DateTimeOffset LastClassCompletedOn { get; set; }
     }
 }
