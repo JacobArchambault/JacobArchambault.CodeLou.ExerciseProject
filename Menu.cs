@@ -50,8 +50,6 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         internal static Student GetStudentInfoFromUser()
         {
             string invalidDateMessage = "Invalid input format. Please enter the date in format MM/dd/YYYY";
-            string completedPrompt = "When did you complete this class? Enter the date in format MM/dd/YYYY: ";
-            string startDatePrompt = "Enter the date you wish to start on, in format MM/dd/YYYY: ";
             int studentId;
             DateTimeOffset lastCompletedOn;
             DateTimeOffset startDate;
@@ -73,13 +71,13 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             WriteLine("Enter the last class you completed: ");
             string lastClass = ReadLine();
 
-            while (!(GetStudentInput(completedPrompt, out lastCompletedOn, DateTimeOffset.TryParse)))
+            while (!(GetStudentInput("When did you complete this class? Enter the date in format MM/dd/YYYY: ", out lastCompletedOn, DateTimeOffset.TryParse)))
             {
                 WriteLine(invalidDateMessage);
 
             };
 
-            while (!(GetStudentInput(startDatePrompt, out startDate, DateTimeOffset.TryParse)))
+            while (!(GetStudentInput("Enter the date you wish to start on, in format MM/dd/YYYY: ", out startDate, DateTimeOffset.TryParse)))
             {
                 WriteLine(invalidDateMessage);
             }
@@ -110,7 +108,5 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         }
         internal delegate bool TryParseHandler<T>(string value, out T result);
         #endregion
-
-
     }
 }
