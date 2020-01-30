@@ -23,7 +23,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             switch (option)
             {
                 case 1:
-                    studentList.Add(GetStudentInfoFromUser());
+                    studentList.Add(GetStudentInfoFromUser(studentList));
                     break;
                 case 2:
                     studentList.ForEach(s => PrintRecord(s));
@@ -47,16 +47,25 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         #endregion
 
         #region 2 Return methods
-        internal static Student GetStudentInfoFromUser()
+        internal static Student GetStudentInfoFromUser(List<Student> listToSearchIn)
         {
             string invalidDateMessage = "Invalid input format. Please enter the date in format MM/dd/YYYY";
             int studentId;
             DateTimeOffset lastCompletedOn;
             DateTimeOffset startDate;
-
-            while (!(GetStudentInput("Enter your student ID number: ", out studentId, int.TryParse)))
+            
+            // GetStudentInput
+            // Parse it.
+            // while parseFails or MatchFound, 
+                // if parseFails, write invalid input message
+                // else write parseFails message
+                // GetStudentInput
+            while (!(GetStudentInput("Enter a student ID number: ", out studentId, int.TryParse)))
             {
-                WriteLine("Invalid input. You must enter a non-zero whole number");
+                WriteLine(
+                    //Search(studentId, listToSearchIn).Any() ?
+                    //"A User with that ID already exists" :
+                    "Invalid input. You must enter a non-zero whole number");
             }
 
             WriteLine("Enter your first name: ");
