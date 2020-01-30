@@ -120,7 +120,13 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             WriteLine(userPrompt);
             return handler(ReadLine(), out output);
         }
+        internal static bool GetStudentInput<T>(string userPrompt, out T output, TryParseHandler<T> handler, List<T> outputCheckerCheckList, OutputChecker<T> outputChecker)
+        {
+            WriteLine(userPrompt);
+            return handler(ReadLine(), out output) && outputChecker(output, outputCheckerCheckList);
+        }
         internal delegate bool TryParseHandler<T>(string value, out T result);
+        internal delegate bool OutputChecker<T>(T inputToCheck, List<T> whatToCheckItAgainst);
         #endregion
     }
 }
