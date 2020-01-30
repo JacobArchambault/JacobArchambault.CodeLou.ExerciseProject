@@ -97,6 +97,11 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         {
             return (from l in listToSearchIn where l.Name.ToUpperInvariant().Contains(userName.ToUpperInvariant()) select l).ToList();
         }
+        internal static List<Student> Search(int studentId, List<Student> listToSearchIn)
+        {
+            return (from l in listToSearchIn where l.StudentId.Equals(studentId) select l).ToList();
+
+        }
 
         ///<summary>
         /// Prompts a user with a message and attempts to parse the user's response to a desired type.
