@@ -53,45 +53,40 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             int studentId;
             DateTimeOffset lastCompletedOn;
             DateTimeOffset startDate;
+            Student student = new Student { };
             
             while (!(GetStudentInput("Enter a student ID number: ", out studentId, int.TryParse)) || Search(studentId, listToCheckAgainst).Any())
             {
                 WriteLine("Invalid input. You must enter a non-zero whole number");
             }
+            student.StudentId = studentId;
 
             WriteLine("Enter your first name: ");
-            string studentFirstName = ReadLine();
+            student.FirstName = ReadLine();
 
             WriteLine("Enter your last name: ");
-            string studentLastName = ReadLine();
+            student.LastName = ReadLine();
 
             WriteLine("Enter the class you want to attend: ");
-            string className = ReadLine();
+            student.ClassName = ReadLine();
 
             WriteLine("Enter the last class you completed: ");
-            string lastClass = ReadLine();
+            student.LastClassCompleted = ReadLine();
 
             while (!(GetStudentInput("When did you complete this class? Enter the date in format MM/dd/YYYY: ", out lastCompletedOn, DateTimeOffset.TryParse)))
             {
                 WriteLine(invalidDateMessage);
 
             };
+            student.LastClassCompletedOn = lastCompletedOn;
 
             while (!(GetStudentInput("Enter the date you wish to start on, in format MM/dd/YYYY: ", out startDate, DateTimeOffset.TryParse)))
             {
                 WriteLine(invalidDateMessage);
             }
+            student.StartDate = startDate;
 
-            return new Student
-            {
-                StudentId = studentId,
-                FirstName = studentFirstName,
-                LastName = studentLastName,
-                ClassName = className,
-                StartDate = startDate,
-                LastClassCompleted = lastClass,
-                LastClassCompletedOn = lastCompletedOn
-            };
+            return student;
         }
         internal static List<Student> Search(string userName, List<Student> listToSearchIn)
         {
@@ -115,13 +110,13 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
         // GetStudentInput
         // Parse it.
-        // Check for match
-        // while parseFails or MatchFound, 
         // if parseFails, write invalid input message
+        // if MatchFound, write matchFound message
+        // while parseFails or MatchFound, 
         // else write parseFails message
         // GetStudentInput
         // Parse it,
         // Check for match.
-
+        // if parseFails, 
     }
 }
