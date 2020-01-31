@@ -43,5 +43,14 @@
     "StartDate": "2323-01-10T00:00:00-05:00",
     "LastClassCompleted": "Fashion design",
     "LastClassCompletedOn": "2222-01-02T00:00:00-05:00"
+  },
+  {
+    "StudentId": 3241234,
+    "FirstName": "Louis",
+    "LastName": "Armstrong",
+    "ClassName": "Music",
+    "StartDate": "1956-04-11T00:00:00-04:00",
+    "LastClassCompleted": "Jazz",
+    "LastClassCompletedOn": "1945-02-23T00:00:00-05:00"
   }
 ]

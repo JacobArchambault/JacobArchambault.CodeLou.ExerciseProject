@@ -54,12 +54,25 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             DateTimeOffset lastCompletedOn;
             DateTimeOffset startDate;
             Student student = new Student { };
-            
-            while (!(GetStudentInput("Enter a student ID number: ", out studentId, int.TryParse)) || Search(studentId, listToCheckAgainst).Any())
+            bool sentinel = true;
+
+            while (sentinel)
             {
-                WriteLine("Invalid input. You must enter a non-zero whole number");
+                WriteLine("Enter a student ID number: ");
+                if (!int.TryParse(ReadLine(), out studentId))
+                {
+                    WriteLine("Invalid input. You must enter a non-zero whole number");
+                }
+                else if (Search(studentId, listToCheckAgainst).Any())
+                {
+                    WriteLine("A user with that ID number already exists");
+                }
+                else
+                {
+                    student.StudentId = studentId;
+                    sentinel = false;
+                }
             }
-            student.StudentId = studentId;
 
             WriteLine("Enter your first name: ");
             student.FirstName = ReadLine();
@@ -107,16 +120,5 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         }
         internal delegate bool TryParseHandler<T>(string value, out T result);
         #endregion
-
-        // GetStudentInput
-        // Parse it.
-        // if parseFails, write invalid input message
-        // if MatchFound, write matchFound message
-        // while parseFails or MatchFound, 
-        // else write parseFails message
-        // GetStudentInput
-        // Parse it,
-        // Check for match.
-        // if parseFails, 
     }
 }
