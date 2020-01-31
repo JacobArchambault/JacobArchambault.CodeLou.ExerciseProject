@@ -47,25 +47,16 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         #endregion
 
         #region 2 Return methods
-        internal static Student GetStudentInfoFromUser(List<Student> listToSearchIn)
+        internal static Student GetStudentInfoFromUser(List<Student> listToCheckAgainst)
         {
             string invalidDateMessage = "Invalid input format. Please enter the date in format MM/dd/YYYY";
             int studentId;
             DateTimeOffset lastCompletedOn;
             DateTimeOffset startDate;
             
-            // GetStudentInput
-            // Parse it.
-            // while parseFails or MatchFound, 
-                // if parseFails, write invalid input message
-                // else write parseFails message
-                // GetStudentInput
-            while (!(GetStudentInput("Enter a student ID number: ", out studentId, int.TryParse)))
+            while (!(GetStudentInput("Enter a student ID number: ", out studentId, int.TryParse)) || Search(studentId, listToCheckAgainst).Any())
             {
-                WriteLine(
-                    //Search(studentId, listToSearchIn).Any() ?
-                    //"A User with that ID already exists" :
-                    "Invalid input. You must enter a non-zero whole number");
+                WriteLine("Invalid input. You must enter a non-zero whole number");
             }
 
             WriteLine("Enter your first name: ");
@@ -109,7 +100,6 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         internal static List<Student> Search(int studentId, List<Student> listToSearchIn)
         {
             return (from l in listToSearchIn where l.StudentId.Equals(studentId) select l).ToList();
-
         }
 
         ///<summary>
@@ -120,13 +110,18 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             WriteLine(userPrompt);
             return handler(ReadLine(), out output);
         }
-        internal static bool GetStudentInput<T>(string userPrompt, out T output, TryParseHandler<T> handler, List<T> outputCheckerCheckList, OutputChecker<T> outputChecker)
-        {
-            WriteLine(userPrompt);
-            return handler(ReadLine(), out output) && outputChecker(output, outputCheckerCheckList);
-        }
         internal delegate bool TryParseHandler<T>(string value, out T result);
-        internal delegate bool OutputChecker<T>(T inputToCheck, List<T> whatToCheckItAgainst);
         #endregion
+
+        // GetStudentInput
+        // Parse it.
+        // Check for match
+        // while parseFails or MatchFound, 
+        // if parseFails, write invalid input message
+        // else write parseFails message
+        // GetStudentInput
+        // Parse it,
+        // Check for match.
+
     }
 }
