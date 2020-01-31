@@ -50,7 +50,6 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         internal static Student GetStudentInfoFromUser(List<Student> listToCheckAgainst)
         {
             string invalidDateMessage = "Invalid input format. Please enter the date in format MM/dd/YYYY";
-            int studentId;
             DateTimeOffset lastCompletedOn;
             DateTimeOffset startDate;
             Student student = new Student { };
@@ -59,18 +58,18 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             while (sentinel)
             {
                 WriteLine("Enter a student ID number: ");
-                if (!int.TryParse(ReadLine(), out studentId))
-                {
-                    WriteLine("Invalid input. You must enter a non-zero whole number");
+
+                if (!int.TryParse(ReadLine(), out int studentId))
+                { 
+                    WriteLine("Invalid input. You must enter a non-zero whole number"); 
                 }
                 else if (Search(studentId, listToCheckAgainst).Any())
-                {
-                    WriteLine("A user with that ID number already exists");
+                { 
+                    WriteLine("A user with that ID number already exists"); 
                 }
                 else
-                {
-                    student.StudentId = studentId;
-                    sentinel = false;
+                { 
+                    student.StudentId = studentId; sentinel = false; 
                 }
             }
 
