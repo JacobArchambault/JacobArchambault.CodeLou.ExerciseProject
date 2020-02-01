@@ -9,7 +9,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         public string FirstName { get; set; }
         public string LastName { get; set; }
         [JsonIgnore]
-        public string Name => $"{FirstName} {LastName}";
+        internal string Name => $"{FirstName} {LastName}";
         public string ClassName { get; set; }
         public DateTimeOffset StartDate { get; set; }
         public string LastClassCompleted { get; set; }

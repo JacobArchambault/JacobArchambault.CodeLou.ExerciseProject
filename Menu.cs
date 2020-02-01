@@ -36,7 +36,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         }
         internal static void PrintRecord<T>(T record)
         {
-            PropertyInfo[] objectInfo = record.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            PropertyInfo[] objectInfo = record.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
             foreach (var propInfo in objectInfo)
                 WriteLine($"{propInfo.Name}: \t{propInfo.GetValue(record, null)}");
@@ -49,7 +49,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         #region 2 Return methods
         internal static Student GetStudentInfoFromUser(List<Student> listToCheckAgainst)
         {
-            string invalidDateMessage = "Invalid input format. Please enter the date in format MM/dd/YYYY";
+            string invalidDateMessage = "Invalid input format. Please enter a valid date.";
             DateTimeOffset lastCompletedOn;
             DateTimeOffset startDate;
             Student student = new Student { };
@@ -58,7 +58,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             {
                 if (!GetStudentInput("Enter a student ID number", out int studentId, int.TryParse))
                 { 
-                    WriteLine("Invalid input. You must enter a non-zero whole number"); 
+                    WriteLine("Invalid input. You must enter a whole number"); 
                 }
                 else if (Search(studentId, listToCheckAgainst).Any())
                 { 
