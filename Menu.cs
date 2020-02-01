@@ -82,14 +82,14 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             WriteLine("Enter the last class you completed: ");
             student.LastClassCompleted = ReadLine();
 
-            while (!(GetStudentInput("When did you complete this class? Enter the date in format MM/dd/YYYY: ", out lastCompletedOn, DateTimeOffset.TryParse)))
+            while (!GetStudentInput("When did you complete this class? Enter the date in format MM/dd/YYYY: ", out lastCompletedOn, DateTimeOffset.TryParse))
                 WriteLine(invalidDateMessage);
 
             student.LastClassCompletedOn = lastCompletedOn;
             
             while (true)
             {
-                if (!(GetStudentInput("Enter the date you wish to start on, in format MM/dd/YYYY: ", out startDate, DateTimeOffset.TryParse)))
+                if (!GetStudentInput("Enter the date you wish to start on, in format MM/dd/YYYY: ", out startDate, DateTimeOffset.TryParse))
                 {
                     WriteLine(invalidDateMessage);
                 }
