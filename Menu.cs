@@ -53,13 +53,10 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             DateTimeOffset lastCompletedOn;
             DateTimeOffset startDate;
             Student student = new Student { };
-            bool sentinel = true;
 
-            while (sentinel)
+            while (true)
             {
-                WriteLine("Enter a student ID number: ");
-
-                if (!int.TryParse(ReadLine(), out int studentId))
+                if (!GetStudentInput("Enter a student ID number", out int studentId, int.TryParse))
                 { 
                     WriteLine("Invalid input. You must enter a non-zero whole number"); 
                 }
@@ -69,7 +66,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                 }
                 else
                 { 
-                    student.StudentId = studentId; sentinel = false; 
+                    student.StudentId = studentId; break; 
                 }
             }
 
@@ -86,15 +83,24 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             student.LastClassCompleted = ReadLine();
 
             while (!(GetStudentInput("When did you complete this class? Enter the date in format MM/dd/YYYY: ", out lastCompletedOn, DateTimeOffset.TryParse)))
-            {
                 WriteLine(invalidDateMessage);
 
-            };
             student.LastClassCompletedOn = lastCompletedOn;
-
-            while (!(GetStudentInput("Enter the date you wish to start on, in format MM/dd/YYYY: ", out startDate, DateTimeOffset.TryParse)))
+            
+            while (true)
             {
-                WriteLine(invalidDateMessage);
+                if (!(GetStudentInput("Enter the date you wish to start on, in format MM/dd/YYYY: ", out startDate, DateTimeOffset.TryParse)))
+                {
+                    WriteLine(invalidDateMessage);
+                }
+                else if (startDate < student.LastClassCompletedOn)
+                {
+                    WriteLine("The startDate for your new class must be later than your last class' completion date.");
+                }
+                else
+                {
+                    break;
+                }
             }
             student.StartDate = startDate;
 
@@ -110,7 +116,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         }
 
         ///<summary>
-        /// Prompts a user with a message and attempts to parse the user's response to a desired type.
+        /// Prompts a user with a message and parses the user's response to a desired type.
         ///</summary>
         internal static bool GetStudentInput<T>(string userPrompt, out T output, TryParseHandler<T> handler)
         {

@@ -52,5 +52,14 @@
     "StartDate": "1956-04-11T00:00:00-04:00",
     "LastClassCompleted": "Jazz",
     "LastClassCompletedOn": "1945-02-23T00:00:00-05:00"
+  },
+  {
+    "StudentId": 23414516,
+    "FirstName": "Amanda",
+    "LastName": "Archambault",
+    "ClassName": "Writing",
+    "StartDate": "2911-02-04T00:00:00-05:00",
+    "LastClassCompleted": "Theology",
+    "LastClassCompletedOn": "2910-02-04T00:00:00-05:00"
   }
 ]
