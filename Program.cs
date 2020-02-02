@@ -41,7 +41,6 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
             using (FileStream fs = Create(jsonFile))
             {
-                // TODO: Add checks to ensure json file exists and has the right format.
                 await SerializeAsync(fs, listOfStudents, new JsonSerializerOptions { WriteIndented = true });
             }
         }
