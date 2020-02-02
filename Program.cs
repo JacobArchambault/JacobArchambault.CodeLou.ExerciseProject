@@ -14,7 +14,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
         static async Task Main()
         {
-            string jsonFile = @"\..\..\student.json";
+            string jsonFile = @"..\..\..\student.json";
             int response;
             List<Student> listOfStudents;
             try
