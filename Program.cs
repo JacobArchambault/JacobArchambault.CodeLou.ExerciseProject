@@ -17,11 +17,14 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             string jsonFile = @"..\..\..\student.json";
             int response;
             List<Student> listOfStudents;
-
-            using (FileStream fs = OpenRead(jsonFile))
+            try
             {
-                // TODO: Add checks to ensure json file exists and has the right format.
-                listOfStudents = await DeserializeAsync<List<Student>>(fs); 
+                using FileStream fs = OpenRead(jsonFile);
+                listOfStudents = await DeserializeAsync<List<Student>>(fs);
+            }
+            catch (FileNotFoundException)
+            {
+                listOfStudents = new List<Student> { };
             }
 
             WriteLine("Welcome to your student center.");
