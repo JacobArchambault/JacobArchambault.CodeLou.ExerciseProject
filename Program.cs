@@ -17,6 +17,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             string jsonFile = @"..\..\..\student.json";
             int response;
             List<Student> listOfStudents;
+
             try
             {
                 using FileStream fs = OpenRead(jsonFile);
@@ -30,6 +31,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             {
                 listOfStudents = new List<Student> { };
             }
+
             WriteLine("Welcome to your student center.");
 
             do
