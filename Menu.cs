@@ -34,6 +34,11 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                     break;
             }
         }
+        /// <summary>
+        /// Gets and prints data for all public properties of the object whose record is sought.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="record"></param>
         internal static void PrintRecord<T>(T record)
         {
             PropertyInfo[] objectInfo = record.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
@@ -60,7 +65,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                 { 
                     WriteLine("Invalid input. You must enter a whole number"); 
                 }
-                else if (Search(studentId, listToCheckAgainst).Any())
+                else if ((Search(studentId, listToCheckAgainst)) != default)
                 { 
                     WriteLine("A user with that ID number already exists"); 
                 }
@@ -106,14 +111,33 @@ namespace JacobArchambault.CodeLou.ExerciseProject
 
             return student;
         }
+
+        /// <summary>
+        /// Searches a list of students for a given string of letters, and returns a list of students whose names include that string.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="listToSearchIn"></param>
+        /// <returns></returns>
         internal static List<Student> Search(string userName, List<Student> listToSearchIn) => 
             (from l in listToSearchIn where l.Name.ToUpperInvariant().Contains(userName.ToUpperInvariant()) select l).ToList();
-        internal static List<Student> Search(int studentId, List<Student> listToSearchIn) => 
-            (from l in listToSearchIn where l.StudentId.Equals(studentId) select l).ToList();
 
-        ///<summary>
+        /// <summary>
+        /// Searches for a student by studentId and returns the first exact match.
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <param name="listToSearchIn"></param>
+        /// <returns></returns>
+        internal static Student Search(int studentId, List<Student> listToSearchIn) =>
+            (from l in listToSearchIn where l.StudentId.Equals(studentId) select l).FirstOrDefault();
+
+        /// <summary>
         /// Prompts a user with a message and parses the user's response to a desired type.
-        ///</summary>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="userPrompt"></param>
+        /// <param name="output"></param>
+        /// <param name="handler"></param>
+        /// <returns></returns>
         internal static bool GetStudentInput<T>(string userPrompt, out T output, TryParseHandler<T> handler)
         {
             WriteLine(userPrompt);

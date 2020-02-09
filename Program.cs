@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using System.Text.Json;
+using System.Threading.Tasks;
 using static JacobArchambault.CodeLou.ExerciseProject.Menu;
 using static System.Console;
 using static System.IO.File;
