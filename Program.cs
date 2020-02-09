@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -23,11 +24,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                 using FileStream fs = OpenRead(jsonFile);
                 listOfStudents = await DeserializeAsync<List<Student>>(fs);
             }
-            catch (FileNotFoundException)
-            {
-                listOfStudents = new List<Student> { };
-            }
-            catch (JsonException)
+            catch (Exception ex) when (ex is FileNotFoundException || ex is JsonException)
             {
                 listOfStudents = new List<Student> { };
             }

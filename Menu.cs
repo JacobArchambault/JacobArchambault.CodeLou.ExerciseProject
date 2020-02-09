@@ -113,7 +113,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         }
 
         /// <summary>
-        /// Searches a list of students for a given string of letters, and returns a list of students whose names include that string.
+        /// Searches a list of students by name, and returns a list of those whose names include that string.
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="listToSearchIn"></param>
