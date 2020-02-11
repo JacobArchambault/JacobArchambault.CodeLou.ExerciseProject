@@ -19,6 +19,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         }
         internal static void Choose(int option, List<Student> studentList)
         {
+            List<Student> returnedList;
             switch (option)
             {
                 case 1:
@@ -29,7 +30,16 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                     break;
                 case 3:
                     Console.WriteLine("Enter the name that you want to search for: ");
-                    Search(Console.ReadLine(), studentList).ForEach(s => PrintRecord(s));
+                    returnedList = Search(Console.ReadLine(), studentList);
+                    if (returnedList.Any())
+                    { 
+                        returnedList.ForEach(s => PrintRecord(s)); 
+                    }
+                    else 
+                    { 
+                        Console.WriteLine("No students with that name were found."); 
+                    }
+
                     break;
             }
         }
