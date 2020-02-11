@@ -42,6 +42,6 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             {
                 await SerializeAsync(fs, listOfStudents, new JsonSerializerOptions { WriteIndented = true });
             }
-        }
+        } 
     }
 }
