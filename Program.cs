@@ -46,7 +46,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                 StartDate = startDate,
                 LastClassCompleted = lastClass,
                 LastClassCompletedOn = lastCompletedOn
-            };
+            }; 
         }
         static void PrintStudentRecord(Student studentRecord)
         {
