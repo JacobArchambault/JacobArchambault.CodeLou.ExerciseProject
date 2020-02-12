@@ -62,16 +62,16 @@ namespace JacobArchambault.CodeLou.ExerciseProject
             while (true)
             {
                 if (!GetStudentInput("Enter a student ID number", out int studentId, int.TryParse))
-                { 
-                    WriteLine("Invalid input. You must enter a whole number"); 
+                {
+                    WriteLine("Invalid input. You must enter a whole number");
                 }
                 else if ((Search(studentId, listToCheckAgainst)) != default)
-                { 
-                    WriteLine("A user with that ID number already exists"); 
+                {
+                    WriteLine("A user with that ID number already exists");
                 }
                 else
-                { 
-                    student.StudentId = studentId; break; 
+                {
+                    student.StudentId = studentId; break;
                 }
             }
 
@@ -91,7 +91,7 @@ namespace JacobArchambault.CodeLou.ExerciseProject
                 WriteLine(invalidDateMessage);
 
             student.LastClassCompletedOn = lastCompletedOn;
-            
+
             while (true)
             {
                 if (!GetStudentInput("Enter the date you wish to start on, in format MM/dd/YYYY: ", out startDate, DateTimeOffset.TryParse))
@@ -118,9 +118,17 @@ namespace JacobArchambault.CodeLou.ExerciseProject
         /// <param name="userName"></param>
         /// <param name="listToSearchIn"></param>
         /// <returns></returns>
-        internal static List<Student> Search(string userName, List<Student> listToSearchIn) => 
-            (from l in listToSearchIn where l.Name.ToUpperInvariant().Contains(userName.ToUpperInvariant()) select l).ToList();
-
+        internal static List<Student> Search(string userName, List<Student> listToSearchIn, string message = "No matching students were found")
+        {
+            WriteLine();
+            List<Student> returnedList = (from l in listToSearchIn where l.Name.ToUpperInvariant().Contains(userName.ToUpperInvariant()) select l).ToList();
+            if (returnedList.Any())
+            {
+                message = "Here is a list of matching students: ";
+            }
+            WriteLine(message);
+            return returnedList;
+        }
         /// <summary>
         /// Searches for a student by studentId and returns the first exact match.
         /// </summary>
